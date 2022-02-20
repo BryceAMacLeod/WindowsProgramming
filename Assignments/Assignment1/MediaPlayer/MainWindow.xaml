@@ -1,0 +1,19 @@
+﻿<Window x:Class="MediaPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaPlayer"
+        mc:Ignorable="d"
+        Title="Media Player" Height="450" Width="800">
+    <StackPanel>
+        <Button Click="OpenButton_Click"
+            Content="open file" Width="Auto" Margin="10"></Button>
+        <TextBlock x:Name="fileNameBox"></TextBlock>
+        <MediaElement x:Name="myMediaPlayer" Height="100" LoadedBehavior="Manual" UnloadedBehavior="Manual"></MediaElement>
+        <Button Click="TagButton_Click"
+            Content="Show Tags" FontSize="32" Width="Auto" Margin="10"></Button>
+        <TextBlock x:Name="tagNameBox"></TextBlock>
+                      
+    </StackPanel>
+</Window>

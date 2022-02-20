@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="CustomControlsDemo_GRPB.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControlsDemo_GRPB"
+             mc:Ignorable="d" Height="140" Width="400">
+    <Border Background="Orange" BorderThickness="3" Margin="0,0,0,-53">
+    <StackPanel>
+        <TextBox x:Name="txtBox" FontSize="32" Margin="10"></TextBox>
+        <Button Content="Click Me!" Margin="10"
+                x:Name="ClickMeButton" FontSize="32"
+                Click="ClickMeButton_Click"></Button>
+        <CheckBox FontSize="32" Content="This is the Checkbox"></CheckBox>
+    </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,50 @@
+﻿<Window x:Class="EventsDemo_GrpB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventsDemo_GrpB"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid ButtonBase.Click="Grid_Click"
+          >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <StackPanel 
+            Height="250" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Chartreuse"  Margin="10" Grid.Row="0">
+            <TextBlock HorizontalAlignment="Stretch" Text="This is a textblock" FontSize="36"/>
+            <Border BorderBrush="DarkOrange" BorderThickness="3">
+                <StackPanel MouseMove="ClickMeButton_MouseMove"
+                        MouseLeave="ClickMeButton_MouseLeave"
+                            Orientation="Horizontal"
+                            Background="Moccasin">
+                    <Rectangle Height="50" Width="100" Margin="20"
+                               >
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Coral" Offset="0"/>
+                                <GradientStop Color="CornflowerBlue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Ellipse Height="50" Width="300" Fill="BlueViolet"
+                            PreviewMouseMove="Ellipse_PreviewMouseMove" />
+                    <Ellipse Height="50" Width="300" Fill="BurlyWood"/>
+                </StackPanel>
+            </Border>
+            <Button x:Name="ClickMeButton" Height="50" Margin="20" 
+                    Content="Click Me" FontSize="36" 
+                    Click="ClickMeButton_Click">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button Content="Second Button" Click="Button_Click"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Height="400">
+            <TextBlock x:Name="MessageTextBlock" Height="300" Margin="3" FontSize="30" TextAlignment="Center" TextWrapping="Wrap"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,41 @@
+﻿<Window x:Class="Layouts_GrpA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Layouts_GrpA"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="201*"/>
+            <ColumnDefinition Width="499*"/>
+            <ColumnDefinition Width="299*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="199*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Column="1">
+            <TextBlock Text="Text Block 1" TextWrapping="Wrap" Width="100" DockPanel.Dock="Left"/>
+            <TextBlock Text="Text Block 2" TextWrapping="Wrap" Width="100" DockPanel.Dock="Right"/>
+            <TextBlock Text="Text Block 3" TextWrapping="Wrap" Width="100" DockPanel.Dock="Bottom"/>
+        </DockPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Grid.Column="0" Margin="0,0,0,0">
+            <Button Content="I'm Button One!" Margin="10"/>
+            <Button Content="I'm Button Two!" Margin="10"/>
+            <Button Content="I'm Button Three!" Margin="10"/>
+            <RadioButton Content="RadioButton"/>
+            <RadioButton Content="RadioButton"/>
+            <TextBox Text="TextBox" TextWrapping="Wrap" Width="120"/>
+        </StackPanel>
+        <DataGrid Width="100" Grid.Column="2" DataContext="CustomerModels">
+            <DataGrid.Columns>
+                <DataGridTextColumn/>
+                <DataGridCheckBoxColumn/>
+                <DataGridComboBoxColumn/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+</Window>
