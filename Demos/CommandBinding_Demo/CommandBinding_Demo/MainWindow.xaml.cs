@@ -55,6 +55,6 @@ namespace CommandBinding_Demo
             TargetTextbox.Paste();
         }
 
-
+        
     }
 }

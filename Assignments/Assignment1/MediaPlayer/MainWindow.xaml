@@ -5,15 +5,119 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="Media Player" Height="450" Width="800">
-    <StackPanel>
-        <Button Click="OpenButton_Click"
-            Content="open file" Width="Auto" Margin="10"></Button>
-        <TextBlock x:Name="fileNameBox"></TextBlock>
-        <MediaElement x:Name="myMediaPlayer" Height="100" LoadedBehavior="Manual" UnloadedBehavior="Manual"></MediaElement>
-        <Button Click="TagButton_Click"
-            Content="Show Tags" FontSize="32" Width="Auto" Margin="10"></Button>
-        <TextBlock x:Name="tagNameBox"></TextBlock>
-                      
-    </StackPanel>
+        Title="Media Player" Height="500" Width="750">
+    <Window.Resources>
+        <Style TargetType="Menu">
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+        <Style TargetType="Image" x:Key="ImageButtons">
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Width" Value="60"></Setter>
+        </Style>
+        <Style TargetType="Image" x:Key="CoverArt">
+            <Setter Property="Height" Value="300"></Setter>
+            <Setter Property="Width" Value="600"></Setter>
+        </Style>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command = "ApplicationCommands.Open"
+                        CanExecute = "OpenCommandBinding_CanExecute"
+                        Executed = "OpenCommandBinding_Executed"></CommandBinding>
+
+        <CommandBinding Command = "ApplicationCommands.Close"
+                        CanExecute = "CloseCommandBinding_CanExecute"
+                        Executed = "CloseCommandBinding_Executed"></CommandBinding>
+        
+        <CommandBinding Command = "MediaCommands.Play"
+                        CanExecute = "PlayCommandBinding_CanExecute"
+                        Executed = "PlayCommandBinding_Executed"></CommandBinding>
+
+        <CommandBinding Command = "MediaCommands.Pause"
+                        CanExecute = "PauseCommandBinding_CanExecute"
+                        Executed = "PauseCommandBinding_Executed"></CommandBinding>
+
+        <CommandBinding Command = "MediaCommands.Stop"
+                        CanExecute = "StopCommandBinding_CanExecute"
+                        Executed = "StopCommandBinding_Executed"></CommandBinding>
+
+    </Window.CommandBindings>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="600*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="600*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <MenuItem Header="File">
+                <MenuItem Command="ApplicationCommands.Open"></MenuItem>
+                <MenuItem x:Name="MenuTagger" Click="TaggingButton_Click" Header="Tag Current MP3"></MenuItem>
+                <MenuItem Command="ApplicationCommands.Close"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem x:Name="MenuSave"  Click="TagEditor_Save" Header="Save"></MenuItem>
+                
+            </MenuItem>
+            <MenuItem Header="Media">
+                <MenuItem Command="MediaCommands.Play"></MenuItem>
+                <MenuItem Command="MediaCommands.Pause"></MenuItem>
+                <MenuItem Command="MediaCommands.Stop"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Menu Grid.Row="1" Grid.Column="0">
+            <Button Command="ApplicationCommands.Open">
+                <Image Style="{StaticResource ImageButtons}" Source="images\open_file.png"/>
+            </Button>
+            <Button Click="NowPlayingButton_Click">
+                <Image Style="{StaticResource ImageButtons}" Source="images\musicnote.png"/>
+            </Button>
+            <Button Click="TaggingButton_Click">
+                <Image Style="{StaticResource ImageButtons}" Source="images\edit.png"/>
+            </Button>
+        </Menu>
+
+        <Canvas x:Name="theCanvas" Grid.Column="1" Grid.Row="1">
+            <MediaElement x:Name="myMediaPlayer" 
+                      LoadedBehavior="Manual" UnloadedBehavior="Manual">
+
+            </MediaElement>
+            <Image x:Name="CoverArt" Source="images\textured.jpg" Stretch="Fill" StretchDirection="Both" Height="387" Width="657"/>
+        </Canvas>
+
+        <Menu Grid.Row="2" Grid.Column="1">
+            <Button Command="MediaCommands.Play">
+                <Image Source="images\media-play.png"/>
+            </Button>
+            <Button Command="MediaCommands.Pause">
+                <Image Source="images\pause-icon.png"/>
+            </Button>
+            <Button Command="MediaCommands.Stop">
+                <Image Source="images\stop-icon.png"/>
+            </Button>
+            <StatusBar Width="397">
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem>
+                    <TextBlock Name="lblProgressStatus" FontSize="20">00:00:00</TextBlock>
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="1" HorizontalContentAlignment="Stretch">
+                    <Slider Name="sliProgress" Thumb.DragStarted="sliProgress_DragStarted"  Thumb.DragCompleted="sliProgress_DragCompleted" ValueChanged="sliProgress_ValueChanged" />
+                </StatusBarItem>
+            </StatusBar>
+        </Menu>
+
+    </Grid>
 </Window>

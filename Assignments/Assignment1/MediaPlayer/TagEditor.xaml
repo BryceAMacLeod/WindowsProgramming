@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="MediaPlayer.TagEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediaPlayer"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{x:Null}"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="MinWidth" Value="50"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="{x:Null}"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Background="#856D6D6D">
+        <TextBlock Text="Tag Editor"  ></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Song Title: "/>
+            <TextBox x:Name="SongTitle"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Artist: "></Label>
+            <TextBox x:Name="Artist"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Album: "></Label>
+            <TextBox x:Name="Album"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Year: "></Label>
+            <!-- restricting input to numbers -->
+            <TextBox x:Name="Year" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        </StackPanel>
+        
+        
+        
+        <Button x:Name="SaveButton" Width="50" Content="Save" Click="SaveButton_Click" FontWeight="Bold"></Button>
+    </StackPanel>
+</UserControl>
