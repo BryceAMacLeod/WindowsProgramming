@@ -1,0 +1,80 @@
+﻿<Page
+    x:Class="LocalNote.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LocalNote"
+    xmlns:models="using:LocalNote.Models"
+    xmlns:viewmodels="using:LocalNote.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <viewmodels:LocalNoteViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="NotesCollection"
+                              Source="{x:Bind LNViewModel.Notes}"></CollectionViewSource>
+        <DataTemplate x:Name="NotesTitleTemplate" x:DataType="models:NoteModel">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="{x:Bind Title}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="About" Label="About Local Note" Command="{x:Bind LNViewModel.AboutCommand}"></AppBarButton>
+                <AppBarButton x:Name="Exit" Label="Exit" Command="{x:Bind LNViewModel.ExitCommand}"></AppBarButton>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Icon="Add" Label="New Note" Click="AddButton_Click"></AppBarButton>
+            <AppBarButton Icon="Save" Label="Save Note"
+                              Command="{x:Bind LNViewModel.SaveCommand}"></AppBarButton>
+            <AppBarButton Icon="Edit" Label="Edit Note" x:Name="EditButton"
+                              Command="{x:Bind LNViewModel.EditCommand}"></AppBarButton>
+            <AppBarSeparator></AppBarSeparator>
+            <AppBarButton Icon="Delete" Label="Delete Note" Command="{x:Bind LNViewModel.DeleteCommand}"></AppBarButton>
+            <CommandBar.Content>
+                <TextBlock x:Name="AppBarNoteTitle" 
+                           Text="{x:Bind LNViewModel.Title, Mode=TwoWay}"
+                           Margin="10,10,0,0"></TextBlock>
+            </CommandBar.Content>
+        </CommandBar>
+    </Page.TopAppBar>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="83*"></RowDefinition>
+            <RowDefinition Height="917*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="397*"></ColumnDefinition>
+            <ColumnDefinition Width="1103*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- Search bar -->
+        <TextBox x:Name="FilterTextbox" 
+                 Text="{x:Bind LNViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PlaceholderText="Search..."
+                 FontSize="24" Margin="10,12,10,11"
+                 Grid.Row="0" Grid.Column="0"/>
+        <!-- Sidebar of Notes -->
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <ListView x:Name="NoteList"
+                      VerticalAlignment="Top"
+                      ItemsSource="{Binding Source={StaticResource NotesCollection}}"
+                      ItemTemplate="{Binding Source={StaticResource NotesTitleTemplate}}"
+                      SelectedItem="{x:Bind LNViewModel.SelectedNote, Mode=TwoWay}"
+                      ></ListView>
+        </ScrollViewer>
+
+        <!-- Note content text area -->
+        <TextBox x:Name="ContentTextbox"
+                 Grid.Row="1" Grid.Column="1"
+                 Text="{x:Bind LNViewModel.Content, Mode=TwoWay}"
+                 PlaceholderText="Type your note here..."
+                 TextWrapping="Wrap"></TextBox>
+    </Grid>
+</Page>
