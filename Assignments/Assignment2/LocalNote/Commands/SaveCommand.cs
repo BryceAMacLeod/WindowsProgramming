@@ -9,7 +9,8 @@ using Windows.UI.Xaml.Controls;
 using LocalNote.Models;
 using LocalNote.Repositories;
 
-namespace LocalNote
+
+namespace LocalNote.Commands
 {
     public class SaveCommand : ICommand
     {
@@ -30,7 +31,10 @@ namespace LocalNote
 
         public bool CanExecute(object parameter)
         {
-            return lnvm.SelectedNote == null;
+            if (lnvm.SelectedNote == null || MainPage.EditContentTextbox.IsReadOnly == false) {
+                return true;
+            }
+            return false;
         }
 
         public async void Execute(object parameter)

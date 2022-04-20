@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 
-namespace LocalNote
+namespace LocalNote.Commands
 {
     public class EditCommand : ICommand
     {

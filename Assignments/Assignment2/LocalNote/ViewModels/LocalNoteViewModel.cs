@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LocalNote.Models;
 using LocalNote.Repositories;
+using LocalNote.Commands;
 
 namespace LocalNote.ViewModels
 {
@@ -61,10 +62,9 @@ namespace LocalNote.ViewModels
         {
             if (SelectedNote != null)
             {
-                // Allow to edit note content
-                MainPage.EditAppBarButton.IsEnabled = true;
-
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Content"));
+                // enabling save button now that it is in edit mode
+                SaveCommand.FireCanExecuteChanged();
             }
         }
 
@@ -77,11 +77,13 @@ namespace LocalNote.ViewModels
                 if(value == null)
                 {
                     MainPage.EditContentTextbox.IsReadOnly = false;
+                    
                     Content = "";
                 } else
                 {
                     // User can't edit unless in edit mode
                     MainPage.EditContentTextbox.IsReadOnly = true;
+                    MainPage.EditAppBarButton.IsEnabled = true;
 
                     Content = value.Content;
                     Title = value.Title;
