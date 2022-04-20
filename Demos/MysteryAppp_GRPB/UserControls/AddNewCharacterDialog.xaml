@@ -1,0 +1,20 @@
+﻿<ContentDialog
+    x:Class="MysteryAppp_GRPB.UserControls.AddNewCharacterDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MysteryAppp_GRPB.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Add New Character?"
+    PrimaryButtonText="Add New Character"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <StackPanel>
+        <TextBox x:Name="NameTextbox" FontSize="20" PlaceholderText="Enter character name..."></TextBox>
+        <TextBox x:Name="LevelTextbox" FontSize="20" PlaceholderText="Enter character level..."></TextBox>
+        <TextBox x:Name="DescTextbox" FontSize="20" PlaceholderText="Enter character description..."></TextBox>
+    </StackPanel>
+</ContentDialog>

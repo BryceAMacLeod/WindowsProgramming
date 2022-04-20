@@ -1,0 +1,7 @@
+﻿<Application
+    x:Class="NameDay_DemoApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NameDay_DemoApp">
+
+</Application>

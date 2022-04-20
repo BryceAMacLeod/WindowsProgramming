@@ -221,7 +221,7 @@ namespace MediaPlayer
 
         private void PlayCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = (myMediaPlayer != null) && (myMediaPlayer.Source != null);
+            e.CanExecute = (myMediaPlayer != null) && (myMediaPlayer.Source != null) && !mediaPlayerIsPlaying;
         }
         private void PlayCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -238,6 +238,7 @@ namespace MediaPlayer
         private void PauseCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             myMediaPlayer?.Pause();
+            mediaPlayerIsPlaying = false;
         }
 
         private void StopCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
