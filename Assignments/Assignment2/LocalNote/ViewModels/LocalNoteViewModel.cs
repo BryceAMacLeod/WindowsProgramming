@@ -77,7 +77,7 @@ namespace LocalNote.ViewModels
                 if(value == null)
                 {
                     MainPage.EditContentTextbox.IsReadOnly = false;
-                    
+                    Title = "Untitled Note";
                     Content = "";
                 } else
                 {
